@@ -1,0 +1,32 @@
+{
+  "manifest_version": 3,
+  "name": "MIL Education - Détecteur de Fake News",
+  "version": "0.1.0",
+  "description": "Détecte les signaux de désinformation sur Facebook et apprend le MIL à l'utilisateur.",
+  "icons": {
+    "16": "assets/icon16.png",
+    "48": "assets/icon48.png",
+    "128": "assets/icon128.png"
+  },
+  "action": {
+    "default_popup": "src/popup/index.html",
+    "default_icon": {
+      "16": "assets/icon16.png",
+      "48": "assets/icon48.png",
+      "128": "assets/icon128.png"
+    }
+  },
+  "background": {
+    "service_worker": "src/background/service-worker.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://*.facebook.com/*"],
+      "js": ["src/content/contentScript.jsx"],
+      "run_at": "document_idle"
+    }
+  ],
+  "permissions": ["storage", "activeTab"],
+  "host_permissions": ["*://*.facebook.com/*"]
+}

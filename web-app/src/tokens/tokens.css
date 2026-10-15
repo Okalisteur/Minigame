@@ -1,0 +1,123 @@
+@import "tailwindcss";
+
+/* ============================================================
+   MIL LEARNING — DESIGN TOKENS (v2 — avant-gardiste, bento)
+   Fond clair et net pour laisser les couleurs vives respirer.
+   L'encre reste sombre pour un fort contraste éditorial.
+   ============================================================ */
+
+@theme {
+  /* --- Fond / neutres --- */
+  --color-brume: #f4f8fb;        /* fond app — presque blanc, teinté bleu glacier */
+  --color-brume-200: #e4edf5;
+  --color-brume-50: #fafcfe;
+  --color-carte: #ffffff;
+  --color-encre: #101a24;        /* texte principal — quasi-noir bleuté, contraste fort */
+  --color-encre-soft: #56697a;
+
+  /* --- Couleurs vives (accents saturés, pas de pastel) --- */
+  --color-corail: #ff5b3c;       /* action, énergie */
+  --color-corail-600: #e6431f;
+  --color-corail-100: #ffe0d6;
+  --color-ravinala: #14c78c;     /* validé / vrai */
+  --color-ravinala-100: #d6f7ea;
+  --color-ravinala-700: #0c8f65;
+  --color-kabary: #ffc93c;       /* alerte / série */
+  --color-kabary-100: #fff2cf;
+  --color-kabary-700: #a67300;
+  --color-alerte: #ff3e70;       /* faux / danger */
+  --color-alerte-100: #ffe1ea;
+  --color-lavande: #2f7ef2;      /* accent principal — bleu apaisant */
+  --color-lavande-100: #dbe9fe;
+  --color-lavande-700: #1c50a8;
+  --color-cyan: #1fd6d6;         /* accent tertiaire */
+  --color-cyan-100: #d6faf7;
+
+  /* --- Thème "Aqua" (écran des cartes) --- */
+  --color-aqua-50: #f0fbff;
+  --color-aqua-100: #d9f5fd;
+  --color-aqua-200: #b4ecfb;
+  --color-aqua-400: #35cdf3;
+  --color-aqua-500: #12bdee;
+  --color-aqua-600: #0a9fd1;
+  --color-aqua-700: #0a7ea8;
+  --color-ciel-ink: #12263f;
+  --color-ciel-soft: #6b7f93;
+
+  /* --- Thème "Nuit" (écran détective) --- */
+  --color-nuit-950: #050f22;
+  --color-nuit-900: #081a36;
+  --color-nuit-800: #0d2750;
+  --color-nuit-700: #143562;
+  --color-nuit-line: #1f3f6e;
+  --color-nuit-text: #9db2cf;
+  --color-papier: #f4ecd8;
+  --color-laiton: #c9a227;
+
+  /* --- Dégradé signature (hero / carte principale du bento) --- */
+  --gradient-hero: linear-gradient(135deg, #2f7ef2 0%, #1fd6d6 100%);
+  --gradient-hero-soft: linear-gradient(135deg, #dbe9fe 0%, #d6faf7 100%);
+
+  /* --- Typographie --- */
+  --font-display: "Baloo 2", "Baloo", ui-rounded, sans-serif;
+  --font-body: "Space Grotesk", "Segoe UI", sans-serif;
+  --font-mono: "Space Mono", ui-monospace, monospace;
+
+  /* --- Rayons --- */
+  --radius-blob: 42% 58% 61% 39% / 45% 40% 60% 55%;
+  --radius-node: 30px;
+  --radius-card: 28px;
+  --radius-bento: 32px;
+  --radius-pill: 999px;
+
+  /* --- Ombres douces, jamais dures/noires --- */
+  --shadow-soft: 0 8px 24px -8px rgba(20, 18, 31, 0.12);
+  --shadow-float: 0 20px 44px -16px rgba(20, 18, 31, 0.22);
+  --shadow-glow-lavande: 0 12px 34px -10px rgba(47, 126, 242, 0.45);
+  --shadow-glow-corail: 0 12px 34px -10px rgba(255, 91, 60, 0.4);
+}
+
+body {
+  background: var(--color-brume);
+  color: var(--color-encre);
+  font-family: var(--font-body);
+}
+
+/* Respect du mouvement réduit */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ============================================================
+   ANIMATIONS PARTAGÉES — écrans Aqua (cartes) et Nuit (détective)
+   ============================================================ */
+@keyframes mil-float {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
+  50% { transform: translate3d(0, -18px, 0) rotate(6deg); }
+}
+@keyframes mil-drift {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(24px, 16px, 0) scale(1.08); }
+}
+@keyframes mil-twinkle {
+  0%, 100% { opacity: 0.25; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.25); }
+}
+@keyframes mil-steam {
+  0% { opacity: 0; transform: translateY(0) scaleX(1); }
+  30% { opacity: 0.8; }
+  100% { opacity: 0; transform: translateY(-14px) scaleX(1.4); }
+}
+@keyframes mil-pulse-dot {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(18, 189, 238, 0.55); }
+  50% { box-shadow: 0 0 0 6px rgba(18, 189, 238, 0); }
+}
+.mil-float { animation: mil-float 9s ease-in-out infinite; }
+.mil-drift { animation: mil-drift 14s ease-in-out infinite; }
+.mil-twinkle { animation: mil-twinkle 2.4s ease-in-out infinite; }
+.mil-steam { animation: mil-steam 2.6s ease-in-out infinite; }
+.mil-pulse-dot { animation: mil-pulse-dot 1.8s ease-in-out infinite; }
